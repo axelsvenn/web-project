@@ -8,20 +8,15 @@ logger = logging.getLogger(__name__)
 
 def start(update, context):
     update.message.reply_text(
-        "Привет. Пройдите небольшой опрос, пожалуйста!\n"
-        "Вы можете прервать опрос, послав команду /stop.\n"
-        "В каком городе вы живёте?")
+        "Здравствуйте! Для начала работы этого бота...\n"
+        "...требуется ввести ваши личные данные.\n"
+        "Введите ваш номер карты.")
     return 1
 
 
 def first_response(update, context):
-    locality = update.message.text
-    if locality == '/skip':
-        locality = 'у вас за окном'
-        update.message.reply_text(
-            "Какая погода у вас за окном")
-    else:
-        update.message.reply_text(f"Какая погода в городе {locality}?")
+    locality = update.message.text  # номер карты
+    update.message.reply_text(f"Какая погода в городе {locality}?")
     return 2
 
 
@@ -54,7 +49,3 @@ def main():
     updater.start_polling()
 
     updater.idle()
-
-
-if __name__ == '__main__':
-    main()
